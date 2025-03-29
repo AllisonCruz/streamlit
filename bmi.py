@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-# 🌍 Get user country using IP
+# 🌍 IP-based location detection
 def get_country():
     try:
         res = requests.get("https://ipinfo.io/json")
@@ -10,7 +10,18 @@ def get_country():
     except:
         return "Unknown"
 
-# 🍽️ Food tips based on country
+# 🗺️ Supported countries
+country_names = {
+    "US": "United States 🇺🇸",
+    "MX": "Mexico 🇲🇽",
+    "IN": "India 🇮🇳",
+    "JP": "Japan 🇯🇵",
+    "CR": "Costa Rica 🇨🇷",
+    "BR": "Brazil 🇧🇷",
+    "ES": "Spain 🇪🇸",
+    "Unknown": "Other 🌍"
+}
+
 food_tips = {
     "US": "🇺🇸 Try grilled salmon with veggies instead of fried food.",
     "MX": "🇲🇽 Go for grilled chicken tacos with avocado and beans. Avoid creamy sauces.",
@@ -22,6 +33,13 @@ food_tips = {
     "Unknown": "🌎 Eat whole foods, fruits, veggies, lean proteins, and drink lots of water!"
 }
 
+# 📍 Location detection + dropdown
+auto_country = get_country()
+selected_country = st.selectbox("🌍 Confirm or select your country:", options=list(country_names.keys()),
+                                format_func=lambda code: country_names[code], index=list(country_names.keys()).index(auto_country))
+
+# 🥗 Use selected_country for tip
+tip = food_tips.get(selected_country, food_tips["Unknown"])
 
 # 🎯 App title
 st.title("🌡️ BMI Calculator")
