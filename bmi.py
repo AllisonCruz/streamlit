@@ -81,5 +81,5 @@ if st.button("Calculate BMI"):
 
     # 📍 Show geo-based food suggestion
     st.markdown(f"---")
-    st.markdown(f"📍 Based on your location **({country})**, here’s a food tip:")
+    st.markdown(f"📍 Based on your location **({selected_country})**, here’s a food tip:")
     st.success(tip)
