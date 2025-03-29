@@ -71,9 +71,8 @@ if st.button("Calculate BMI"):
         advice = "Talk to a health pro. Focus on balance and consistency."
         color = "red"
 
-    # 🌍 Get country and food tip
-    country = get_country()
-    tip = food_tips.get(country, food_tips["Unknown"])
+    # 🌍 Get country food tip
+    tip = food_tips.get(selected_country, food_tips["Unknown"])
 
     # 📤 Output results
     st.markdown(f"### ✅ Your BMI is: `{bmi:.1f}`")
